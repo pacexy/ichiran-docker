@@ -35,7 +35,9 @@ RUN cd /root/quicklisp/local-projects/ && git clone https://github.com/tshatrov/
 COPY ./settings.lisp /root/quicklisp/local-projects/ichiran/settings.lisp
 
 # Setup and build ichiran-cli
-RUN sbcl --eval '(load "~/quicklisp/setup.lisp")' --eval '(ql:quickload :ichiran/cli)' --eval '(ichiran/cli:build)'
+RUN  sbcl --eval '(load "~/quicklisp/setup.lisp")' --eval '(ql:quickload :ichiran)' --eval '(ichiran/mnt:add-errata)' --eval '(ichiran/test:run-all-tests)' --eval '(sb-ext:quit)' && \
+  sbcl --eval '(load "~/quicklisp/setup.lisp")' --eval '(ql:quickload :ichiran/cli)' --eval '(ichiran/cli:build)' && \
+  /root/quicklisp/local-projects/ichiran/ichiran-cli "一覧は最高だぞ"
 
 # Setup server directory and install dependencies
 RUN mkdir /home/server
