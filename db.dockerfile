@@ -5,7 +5,7 @@ ENV PGPASSWORD=postgres
 
 # Update and install packages
 RUN apt update && apt dist-upgrade -y && apt install -y \
-  postgresql \
+  postgresql-16.1 \
   sudo \
   vim \
   locales \
@@ -29,6 +29,8 @@ RUN service postgresql start && \
   sudo -u postgres pg_restore -c -d ichiran-db ichiran-230122.pgdump || true && \
   service postgresql stop
 
+RUN ls /usr/lib/postgresql
+
 EXPOSE 5432
 
-CMD ["sh", "-c", "postgres -D /var/lib/postgresql/data -p $PORT"]
+CMD ["sh", "-c", "/usr/lib/postgresql/16.1/bin/postgres -D /var/lib/postgresql/data -p $PORT"]
