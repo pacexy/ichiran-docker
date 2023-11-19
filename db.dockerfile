@@ -29,15 +29,7 @@ RUN service postgresql start && \
   sudo -u postgres pg_restore -c -d ichiran-db ichiran-230122.pgdump || true && \
   service postgresql stop
 
-# Add init scripts
-COPY wrapper.sh /usr/local/bin/wrapper.sh
-
-# Set permissions
-RUN chmod +x /usr/local/bin/wrapper.sh
-
-RUN echo $PGHOST $PGPORT
-
-ENTRYPOINT ["wrapper.sh"]
+RUN env
 
 EXPOSE 5432
 
