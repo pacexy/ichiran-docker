@@ -20,11 +20,13 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
   apt-get install -y \
   nodejs
 
-# Download quicklisp and install
-RUN wget https://beta.quicklisp.org/quicklisp.lisp && \
-  wget https://beta.quicklisp.org/quicklisp.lisp.asc && \
-  gpg --verify /quicklisp.lisp.asc /quicklisp.lisp; exit 0 && \
-  sbcl --load /quicklisp.lisp --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)' --eval '(sb-ext:quit)'
+# Download database and quicklist libraries, and jmdict dictionary
+RUN wget https://beta.quicklisp.org/quicklisp.lisp
+RUN wget https://beta.quicklisp.org/quicklisp.lisp.asc
+
+# Install quicklisp
+RUN gpg --verify /quicklisp.lisp.asc /quicklisp.lisp; exit 0
+RUN sbcl --load /quicklisp.lisp --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)' --eval '(sb-ext:quit)'
 
 # Download ichiran
 RUN cd /root/quicklisp/local-projects/ && git clone https://github.com/tshatrov/ichiran.git
