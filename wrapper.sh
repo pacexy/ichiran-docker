@@ -13,4 +13,4 @@ unset PGPORT
 
 # Call the entrypoint script with the
 # approriate PGHOST & PGPORT
-/usr/local/bin/docker-entrypoint.sh "$@"
+# /usr/local/bin/docker-entrypoint.sh "$@"
