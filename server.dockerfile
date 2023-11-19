@@ -2,19 +2,23 @@ FROM ubuntu
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Update and install packages
-RUN apt update && apt dist-upgrade -y && apt install -y \
+# Update packages
+RUN apt update; apt dist-upgrade -y
+
+# Install packages
+RUN apt install -y \
   sudo \
   vim \
   wget \
   sbcl \
   git \
-  curl \
-  nodejs
+  gnupg \
+  curl
 
 # Install Node
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-  apt-get install -y nodejs
+  apt-get install -y \
+  nodejs
 
 # Download quicklisp and install
 RUN wget https://beta.quicklisp.org/quicklisp.lisp && \
