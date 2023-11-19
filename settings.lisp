@@ -2,8 +2,8 @@
 
 (defparameter *connection* '("ichiran-db" "postgres" "postgres" "db.railway.internal"))
 
-(defparameter *connections* '((:old "jmdict_old" "postgres" "password" "localhost")
-                              (:test "jmdict_test" "postgres" "password" "localhost")))
+(defparameter *connections* '((:old "jmdict_old" "postgres" "password" "db.railway.internal")
+                              (:test "jmdict_test" "postgres" "password" "db.railway.internal")))
 
 (in-package #:ichiran/dict)
 
