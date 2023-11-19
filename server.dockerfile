@@ -26,9 +26,8 @@ RUN wget https://beta.quicklisp.org/quicklisp.lisp && \
   gpg --verify /quicklisp.lisp.asc /quicklisp.lisp; exit 0 && \
   sbcl --load /quicklisp.lisp --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)' --eval '(sb-ext:quit)'
 
-# Download and setup ichiran
-RUN cd /root/quicklisp/local-projects/ && \
-  git clone https://github.com/tshatrov/ichiran.git
+# Download ichiran
+RUN cd /root/quicklisp/local-projects/ && git clone https://github.com/tshatrov/ichiran.git
 
 # Copy settings.lisp
 COPY ./settings.lisp /root/quicklisp/local-projects/ichiran/settings.lisp
