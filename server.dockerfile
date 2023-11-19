@@ -42,6 +42,6 @@ RUN mkdir /home/server
 COPY ./server /home/server
 RUN npm i --prefix /home/server
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["npm", "run", "start", "--prefix", "/home/server"]
