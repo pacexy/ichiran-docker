@@ -35,6 +35,8 @@ COPY wrapper.sh /usr/local/bin/wrapper.sh
 # Set permissions
 RUN chmod +x /usr/local/bin/wrapper.sh
 
+RUN echo $PGHOST $PGPORT
+
 ENTRYPOINT ["wrapper.sh"]
 
 EXPOSE 5432
