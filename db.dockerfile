@@ -31,4 +31,4 @@ RUN service postgresql start && \
 
 EXPOSE 5432
 
-CMD ["service", "postgresql", "start"]
+CMD ["sh", "-c", "postgres -D /var/lib/postgresql/data -p $PORT"]
