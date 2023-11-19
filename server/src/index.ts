@@ -6,6 +6,7 @@ export const segment = (text: string) => {
   try {
     return JSON.parse(execSync(`cd /root/quicklisp/local-projects/ichiran/ && ./ichiran-cli -f -- "${text}"`).toString());
   } catch (e) {
+    console.error(e)
     return [];
   }
 }
