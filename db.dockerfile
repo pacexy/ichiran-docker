@@ -5,7 +5,7 @@ ENV PGPASSWORD=postgres
 
 # Update and install packages
 RUN apt update && apt dist-upgrade -y && apt install -y \
-  postgresql-16 \
+  postgresql \
   sudo \
   vim \
   locales \
@@ -33,4 +33,4 @@ RUN ls /usr/lib/postgresql
 
 EXPOSE 5432
 
-CMD ["sh", "-c", "/usr/lib/postgresql/16/bin/postgres -D /var/lib/postgresql/data -p $PORT"]
+CMD ["sh", "-c", "/usr/lib/postgresql/14/bin/postgres -D /var/lib/postgresql/data -p $PORT"]
