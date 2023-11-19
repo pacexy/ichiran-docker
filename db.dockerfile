@@ -29,8 +29,14 @@ RUN service postgresql start && \
   sudo -u postgres pg_restore -c -d ichiran-db ichiran-230122.pgdump || true && \
   service postgresql stop
 
-RUN ls /usr/lib/postgresql
+# Add init scripts
+COPY wrapper.sh /usr/local/bin/wrapper.sh
+
+# Set permissions
+RUN chmod +x /usr/local/bin/wrapper.sh
+
+ENTRYPOINT ["wrapper.sh"]
 
 EXPOSE 5432
 
-CMD ["sh", "-c", "/usr/lib/postgresql/14/bin/postgres -D /var/lib/postgresql/data -p $PORT"]
+CMD ["service", "postgresql", "start"]
